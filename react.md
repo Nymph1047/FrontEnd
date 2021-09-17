@@ -1,7 +1,17 @@
 ## react和vue的区别
+**相同点：**
+- 数据驱动页面，提供响应式的试图组件
+- 都有virtual DOM,组件化的开发，通过props参数进行父子之间组件传递数据，都实现了webComponents规范
+- 数据流动单向，都支持服务器的渲染SSR
+- 都有支持native的方法，react有React native， vue有wexx
 
-## useEffect第二个参数作用
-设置触发条件
+**不同点：**
+- 数据绑定：Vue实现了双向的数据绑定，react数据流动是单向的
+- 数据渲染：大规模的数据渲染，react更快
+- 使用场景：React配合Redux架构适合大规模多人协作复杂项目，Vue适合小快的项目
+- 开发风格：react推荐做法jsx + inline style把html和css都写在js了
+
+## reacthooks
 
 类定义中有许多生命周期函数，而在 React Hooks 中也提供了一个相应的函数 (useEffect)，这里可以看做`componentDidMount、componentDidUpdate`和`componentWillUnmount`的结合。
 

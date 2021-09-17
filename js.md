@@ -21,3 +21,26 @@ JSON.parse(JSON.stringify)
   - 拷贝 Date 引用类型会变成字符串
   - 对象中含有 NaN、Infinity 以及 -Infinity，JSON 序列化的结果会变成 null
   - 不能解决循环引用的对象，即对象成环 (obj[key] = obj)。
+
+## 箭头函数和普通函数的区别？
+- 1、不绑定this
+箭头函数，this代表上层对象，若无自定义上层，则代表window。
+普通函数，this代表当前对象。
+
+- 2、不绑定arguments
+箭头函数不绑定arguments，但是可使用…rest参数
+这是普通函数arguments，可以使用
+
+- 3、箭头函数不能使用new操作符
+箭头函数不能用作构造器，和 new一起用会抛出错误。
+
+- 4、箭头函数没有prototype属性
+箭头函数没有原型属性。
+prototype是普通函数用于获取原型对象的。
+
+- 5、箭头函数的bind()、call()或apply()函数，不会影响到this的代表对象。
+箭头函数内的this指向上层对象，bind()、call()、apply()均无法改变指向
+
+## 为什么vue里面，组件的data需要返回一个函数
+每个组件都是Vue的实例。
+组件共享data属性，当data的值是同一个引用类型的值时，改变其中一个会影响其他。
