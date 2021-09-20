@@ -40,3 +40,5 @@ prototype是普通函数用于获取原型对象的。
 
 - 5、箭头函数的bind()、call()或apply()函数，不会影响到this的代表对象。
 箭头函数内的this指向上层对象，bind()、call()、apply()均无法改变指向
+
+## 函数的柯里化
