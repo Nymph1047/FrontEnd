@@ -65,3 +65,40 @@ prototype是普通函数用于获取原型对象的。
     }
 }
 ```
+
+## 手写apply
+```js
+  Function.prototype.myApply = function (context=window,...arg){
+    let key = symbol('key');
+    context[key] = this;
+    let args = [...arguments].slice(1);
+    let result = context[key](args);
+    delete context[key];
+    return result;
+}
+```
+
+## 手写call
+```js
+Function.prototype.myCall = function (context=window,...args){
+    let key = symbol('key');
+    context[key] = this;
+    let arg = [...arguments].slice(1);
+    let result = context[key](...args);
+    delete context[key];
+    return result;
+}
+```
+
+## 手写bind
+```js
+Function.prototype.myBind = function (context,...outArgs){
+    let self = this;
+    return function F(...interArgs){
+        if (self instanceof F){
+            return new self(...outArgs,...interArgs)
+        }
+        return F.apply(context,[...outArgs,...interArgs])
+    }
+}
+```
