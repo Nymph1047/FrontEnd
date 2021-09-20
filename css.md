@@ -253,3 +253,52 @@ IE下为 Layout，可通过 zoom:1 触发
 - :enabled
 - :disabled 控制表单控件的禁用状态。
 - :checked 单选框或复选框被选中
+
+## 选择器权重计算方式
+`!important > 内联样式 = 外联样式 >ID选择器 > 类选择器 = 伪类选择器 = 属性选择器  > 元素选择器 =  伪元素选择器 > 通配符选择器 = 后代选择器 = 兄弟选择器`
+
+## 清除浮动
+- 在浮动元素后面添加clear：both的空div元素
+```html
+<div class="container">
+  <div class="left"></div>
+  <div class="right"></div>
+  <div style="clear: both"></div>
+</div>
+```
+- 给父元素添加overflow：hidden或者auto样式，触发BFC
+```html
+<div class="container">
+  <div class="left"></div>
+  <div class="right"></div>
+</div>
+```
+```css
+.container{
+  width: 300px;
+  background: #aaa;
+  overflow: hidden;
+  zoom: 1;
+}
+```
+- 使用伪元素，也是在元素末尾添加一个点并带有clear：both属性的元素来实现的。
+
+```html
+<div class="container clearfix">
+  <div class="left"></div>
+  <div class="right"></div>
+</div>
+```
+```css
+.clearfix{
+  zoom: 1;
+}
+.claerfix::after{
+  content: ".";
+  height: 0;
+  clear: both;
+  display: block;
+  visibility: hidden;
+}
+```
+
