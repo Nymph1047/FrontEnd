@@ -41,6 +41,24 @@ prototype是普通函数用于获取原型对象的。
 - 5、箭头函数的bind()、call()或apply()函数，不会影响到this的代表对象。
 箭头函数内的this指向上层对象，bind()、call()、apply()均无法改变指向
 
-## 为什么vue里面，组件的data需要返回一个函数
-每个组件都是Vue的实例。
-组件共享data属性，当data的值是同一个引用类型的值时，改变其中一个会影响其他。
+## 函数的柯里化
+- 柯里化的定义：接收一部分参数，返回一个函数接收剩余参数，接收足够参数后，执行原函数。
+  当柯里化函数接收到足够参数后，就会执行原函数，如何去确定何时达到足够的参数呢？
+- 有两种思路：
+通过函数的 length 属性，获取函数的形参个数，形参的个数就是所需的参数个数
+在调用柯里化工具函数时，手动指定所需的参数个数
+将这两点结合一下，实现一个简单 curry 函数
+[].slice.call(arguments)能将具有length属性的对象转成数组。
+  ```js
+  function curry(fn,args){
+   var length = fn.length;
+   var args = args || [];
+   return function(){
+    newArgs = args.concat(Array.prototype.slice.call(arguments));
+    if(newArgs.length < length){
+       return curry.call(this,fn,newArgs);
+    }else{
+       return fn.apply(this,newArgs);
+    }
+  }
+```

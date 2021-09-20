@@ -21,7 +21,7 @@ data 中声明的属性都被添加了访问器属性，
 https://segmentfault.com/a/1190000018018502
 
 ## 组件传值的几种方式
-- 父组件通过props传递数据给子组件
-- 子组件通过emit发送事件传递数据给父组件
-- eventBus
-- vuex
+父组件通过props传递数据给子组件
+子组件通过emit发送事件传递数据给父组件
+eventBus
+vuex
