@@ -103,13 +103,128 @@ IE下为 Layout，可通过 zoom:1 触发
 - 可以阻止元素被浮动元素覆盖
 
 ## 垂直居中
+- 定高：margin，position + margin(负值)
+- 不定高：position + transform，flex，IFC + vertical-align:middle
+```css
+/*不定高方案1*/
+.center{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
 
+/*不定高方案2*/
+.wrap{
+  display: flex;
+  align-items: center;
+}
+.center{
+  width: 100%;
+}
+
+```
 ## 水平居中
+- 行内元素：text-align：center
+- 定宽块状元素：左右margin值为auto
+- 不定宽块状元素：table布局，position+transform
+```css
+/*方案一*/
+.wrap{
+  text-align: center;
+}
+.center{
+  display: inline;
+}
 
+/*方案二*/
+.center{
+  width: 100px;
+  margin: 0 auto;
+}
+
+/*方案三*/
+.wrap{
+  position: relative;
+}
+.center{
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+```
 ## 两栏布局
+- float+margin,float+calc
+```css
+.left{
+  float:left;
+  width: 200px;
+}
+.right{
+  margin-left: 200px;
+}
 
+/*第二种方法*/
+.left{
+  float: left;
+  width: 200px;
+}
+.right{
+  width: calc(100% - 200px);
+  float: left;
+}
+
+```
 ## 三栏布局
+- float, float+calc,圣杯布局（设置BFC,margin负值法，flex）
+```css
+.wrap{
+  width: 100%;
+  height: 200px;
+}
+.wrap>div{
+  height: 100%;
+}
+/*方案一*/
+.left{
+  width: 120px;
+  float: left;
+}
+.right{
+  width: 120px;
+  float: right;
+}
+.center{
+  margin: 0 120px;
+}
 
+/*第二种方法*/
+.left{
+  width: 120px;
+  float: left;
+}
+.right{
+  width: 120px;
+  float: right;
+}
+.center{
+  width: calc(100% - 240px);
+  margin-left: 120px;
+}
+
+/*第三种方案*/
+.wrap{
+  display: flex;
+}
+.left{
+  width: 120px;
+}
+.right{
+  width: 120px;
+}
+.center{
+  flex: 1;
+}
+```
 ## 伪类和伪元素
 **css引入伪类和伪元素概念是为了格式化文档树以外的信息。也就是说，伪类和伪元素都是用来修饰不在文档树中的部分**
 ### 伪类
