@@ -114,3 +114,12 @@ function myInstanceof(example,classFunc){
     }
 }
 ```
+
+## 手写new
+```js
+function myNew(fn,...args){
+    let instance = Object.create(fn.prototype);
+    let res = fn.apply(instance,args)
+    return typeof res === Object ? res : instance;
+}
+```
