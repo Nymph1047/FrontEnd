@@ -123,3 +123,68 @@ function myNew(fn,...args){
     return typeof res === Object ? res : instance;
 }
 ```
+## 数组去重
+### set
+```js
+const unique= arr => Array.from(new Set(arr));
+```
+```js
+const unique = arr => [...new Set(arr)]
+```
+### Object
+开辟一个外部存储空间用于标示元素是否出现过
+```js
+const unique = (array) =>{
+    var container = {};
+    return array.filter((item,index) => container.hasOwnProperty(item) ? false : (container[item] = true));
+}
+```
+### indexOf + filter
+```js
+const unique = array =>{
+     return array.filter((item,index) => array.indexOf(item) === index);
+}
+```
+### reduce
+```js
+const unique = arr.reduce(function (pre,cur){
+    pre.index(cur) === -1 && per.push(cur)
+    return pre
+},[])
+```
+
+## 数组扁平
+### reduce
+```js
+const flat = arr.reduce((x,y)=>x.concat(y),[])
+```
+### flat(Infinity)
+```js
+const flat = arr.flat(Infinity);
+```
+### 递归处理
+```js
+let result = [];
+let fn = function (arr){
+    for (let i = 0; i < arr.length; i++){
+        let item = arr[i]
+        if (Array.isArray(arr[i])){
+            fn(item)
+        }else {
+            result.push(item)
+        }
+    }
+    return result
+}
+```
+### 扩展运算符
+```js
+while (arr.some(Array.isArray)){
+   arr = [].concat(...arr)
+}
+```
+## 数组的最大值
+### reduce
+```js
+const max = arr.reduce((x,y) => Math.max(x,y))
+```
